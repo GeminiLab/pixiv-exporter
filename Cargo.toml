@@ -11,7 +11,7 @@ documentation = "https://docs.rs/pixiv-exporter"
 readme = "README.md"
 keywords = ["pixiv", "prometheus", "exporter", "metrics"]
 categories = ["command-line-utilities", "web-programming"]
-rust-version = "1.85"
+rust-version = "1.91"
 include = ["src/", "README.md", "LICENSE", "Cargo.lock"]
 
 [dependencies]
