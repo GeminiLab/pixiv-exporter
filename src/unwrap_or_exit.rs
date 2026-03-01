@@ -8,11 +8,11 @@ pub trait UnwrapOrExit<T, E>: Sized {
         Self::unwrap_or_exit_with(self, |_| ())
     }
     /// Unwraps the value, invoking `f` with the error payload before exiting.
-    fn unwrap_or_exit_with<F: FnOnce(E) -> ()>(self, f: F) -> T;
+    fn unwrap_or_exit_with<F: FnOnce(E)>(self, f: F) -> T;
 }
 
 impl<T, E> UnwrapOrExit<T, E> for Result<T, E> {
-    fn unwrap_or_exit_with<F: FnOnce(E) -> ()>(self, f: F) -> T {
+    fn unwrap_or_exit_with<F: FnOnce(E)>(self, f: F) -> T {
         match self {
             Ok(value) => value,
             Err(e) => {
@@ -24,7 +24,7 @@ impl<T, E> UnwrapOrExit<T, E> for Result<T, E> {
 }
 
 impl<T> UnwrapOrExit<T, ()> for Option<T> {
-    fn unwrap_or_exit_with<F: FnOnce(()) -> ()>(self, f: F) -> T {
+    fn unwrap_or_exit_with<F: FnOnce(())>(self, f: F) -> T {
         match self {
             Some(value) => value,
             None => {

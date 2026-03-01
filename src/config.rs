@@ -171,7 +171,7 @@ fn default_refresh_token() -> StringOrEnvRef {
 impl Config {
     /// Returns the pretty-printed JSON schema for this configuration type.
     pub fn json_schema() -> String {
-        to_json_pretty(&schemars::schema_for!(Config)).unwrap()
+        to_json_pretty(&schemars::schema_for!(Config)).expect("Failed to pretty-print JSON schema")
     }
 
     /// Loads and parses configuration from a JSON file path.
@@ -196,6 +196,6 @@ impl Config {
             refresh_token: default_refresh_token(),
         };
 
-        to_json_pretty(&config).unwrap()
+        to_json_pretty(&config).expect("Failed to pretty-print example config")
     }
 }
